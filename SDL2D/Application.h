@@ -38,6 +38,7 @@ public:
             }
             //gestion de l'affichage
             glcontext.clear();
+            glcontext.draw();
             glcontext.refresh();
         }
     }

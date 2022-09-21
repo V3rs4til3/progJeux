@@ -15,9 +15,13 @@ public:
     void refresh(){ 
         SDL_GL_SwapWindow(sdlWindow);
     }
+    void draw(){
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+    }
     GLContext(const char* name = "", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED ,
      int w = 640, int h = 480, unsigned int Wflags = 0)
-     : Window(name, x , y , w, h, windowsFlags | SDL_WINDOW_OPENGL){
+     : Window(name, x , y , w, h, Wflags | SDL_WINDOW_OPENGL){
         glContext = SDL_GL_CreateContext(sdlWindow);
     };
     ~GLContext(){
