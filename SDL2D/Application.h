@@ -16,10 +16,15 @@ using namespace std;
 class Application
 {
 private:
-   GLContext glcontext; ///< Fenetres de l'application
+    static Application instance;
+    GLContext glcontext; ///< Fenetres de l'application
 public:
     /// @brief 
     
+    static Application& getInstance(){
+        return instance;
+    }
+
     void start(){
         bool isUp = true;
         while (isUp){
@@ -44,3 +49,4 @@ public:
     };
 };
 
+Application Application::instance;

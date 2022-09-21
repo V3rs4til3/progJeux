@@ -17,7 +17,7 @@ public:
     }
     GLContext(const char* name = "", int x = SDL_WINDOWPOS_CENTERED, int y = SDL_WINDOWPOS_CENTERED ,
      int w = 640, int h = 480, unsigned int Wflags = 0)
-     : Window(name, x , y , w, h, Wflags){
+     : Window(name, x , y , w, h, windowsFlags | SDL_WINDOW_OPENGL){
         glContext = SDL_GL_CreateContext(sdlWindow);
     };
     ~GLContext(){

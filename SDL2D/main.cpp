@@ -2,7 +2,6 @@
 #include "Application.h"
 
 int main(int argc, char* argv[]) {
-    Application* app = new Application();
-    app->start();
+    Application::getInstance().start();
     return 0;
 }
