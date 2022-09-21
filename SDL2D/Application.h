@@ -19,14 +19,17 @@ private:
    GLContext glcontext; ///< Fenetres de l'application
 public:
     /// @brief 
-    bool isUp = true;
+    
     void start(){
-        while (isUP){
+        bool isUp = true;
+        while (isUp){
             //gestion des evenments
             while (SDLEvent::poll()){
-                case SDL_QUIT:
-                    isUp = false;
-                    break;
+                switch (SDLEvent::GetType()){
+                    case SDL_QUIT:
+                        isUp = false;
+                        break;
+                }
             }
             //gestion de l'affichage
             glcontext.clear();
@@ -37,7 +40,7 @@ public:
         SDL_Init(SDL_INIT_EVERYTHING);
     };
     ~Application(){   
-        SDL_QUIT();
+        SDL_Quit();
     };
 };
 

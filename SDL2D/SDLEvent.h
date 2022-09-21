@@ -23,16 +23,6 @@ public:
     static unsigned int GetType(){
         return sdlEvent.type;
     };
-    /// @brief Obtention du type d'evenement de fenetre
-    /// @return Type de l'evenement
-    static unsigned int GetWindowEventType(){
-        return sdlEvent.window.event;
-    }
-    /// @brief Obtention de l'id de la fenetre de l'event
-    /// @return L'id de la fenetre
-    static unsigned int GetWindowId(){
-        return sdlEvent.window.windowID;
-    }
 };
 
 SDL_Event SDLEvent::sdlEvent;
