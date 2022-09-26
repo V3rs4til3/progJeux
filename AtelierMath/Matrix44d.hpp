@@ -2,9 +2,6 @@
 /// @brief definition de la classe Matrix44d
 /// @author Jérémie Perreault
 
-#pragma once
-#include "Vector3d.hpp"
-
 #define e11 elements[0]
 #define e12 elements[1]
 #define e13 elements[2]
@@ -110,11 +107,11 @@ public:
     /// matrice de rotation arbitraire
     /// @param v vecteur de rotation
     /// @param angle angle de rotation
-    void loadRotationOnAxis(Vecteur3d axis, double angle){
-        if((axis.x * axis.x + axis.y * axis.y + axis.z * axis.z) != 1){
-            axis.setNormalize();
+    void loadRotationOnAxis(Vecteur3d* axis, double angle){
+        if((axis->x * axis->x + axis->y * axis->y + axis->z * axis->z) != 1){
+            axis->setNormalize();
         }
-        loadRotationOnNormalizeAxis(axis, angle);
+        loadRotationOnNormalizeAxis(*axis, angle);
     }
 
 };

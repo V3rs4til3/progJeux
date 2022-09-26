@@ -36,7 +36,7 @@ struct Vecteur3d{
     /// @brief addition de 2 vecteurs
     /// @param v vecteur a ajouter
     /// @return resultat de l'addition (un 3e vecteur)
-    Vecteur3d operator+(Vecteur3d v){
+    Vecteur3d operator+(Vecteur3d& v){
         Vecteur3d res;
         res.x = this->x + v.x;
         res.y = this->y + v.y;
@@ -47,7 +47,7 @@ struct Vecteur3d{
     /// @brief soustraction de 2 vecteurs
     /// @param v vecteur a soustraire
     /// @return resultat de la soustraction (un 3e vecteur)
-    Vecteur3d operator-(Vecteur3d v){
+    Vecteur3d operator-(Vecteur3d& v){
         Vecteur3d res;
         res.x = this->x - v.x;
         res.y = this->y - v.y;
@@ -58,7 +58,7 @@ struct Vecteur3d{
     /// @brief produit vectoriel de 2 vecteurs
     /// @param v vecteur a multiplier
     /// @return resultat du produit vectoriel (un 3e vecteur)
-    Vecteur3d operator*(Vecteur3d v){
+    Vecteur3d operator*(Vecteur3d& v){
         Vecteur3d res;
         res.x = v.y * this->z - v.z * this->y;
         res.y = v.z * this->x - v.x *this->z;
@@ -69,7 +69,7 @@ struct Vecteur3d{
     /// @brief produit scalaire de 2 vecteurs
     /// @param v vecteur a multiplier
     /// @return resultat du produit scalaire
-    double operator%(Vecteur3d v){
+    double operator%(Vecteur3d& v){
        return (this->x * v.x + this->y * v.y + this->z * v.z);
     }
 
