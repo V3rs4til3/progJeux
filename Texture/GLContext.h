@@ -30,8 +30,8 @@ public:
         
         glBegin(GL_QUADS);
             glTexCoord2d(0.0, 0.0); glVertex3d(0.0, 0.0, 0.0);
-            glTexCoord2d(0.5, 0.0); glVertex3d(600, 0.0, 0.0);
-            glTexCoord2d(1.0, 1.0); glVertex3d(600, 200, 0.0);
+            glTexCoord2d(1.0, 0.0); glVertex3d(400, 0.0, 0.0);
+            glTexCoord2d(1.0, 1.0); glVertex3d(400, 200, 0.0);
             glTexCoord2d(0.0, 1.0); glVertex3d(0.0, 200, 0.0);
 
         glEnd();
@@ -52,13 +52,13 @@ public:
         
         TTF_Init();
         //SDL_Surface* sdlSurface =  IMG_Load("wow.png");
-        font = TTF_OpenFont("CreepyPumkin.ttf", 12);
-        SDL_Surface* sdlSurface = TTF_RenderText_Blended(font, "Hello World bla bla", {0, 255, 0, 255});
+        font = TTF_OpenFont("SideLove.ttf", 42);
+        SDL_Surface* sdlSurface = TTF_RenderText_Blended(font, "Hello World", {0, 255, 0, 255});
         
         unsigned int realPitch = sdlSurface->w * sdlSurface->format->BytesPerPixel;
         unsigned char* srcPointer = (unsigned char*)sdlSurface->pixels;
         unsigned char* dstPointer = srcPointer;
-        for(int i = 0; i < sdlSurface->h; i++){
+        for(size_t i = 0; i < sdlSurface->h; i++){
             memmove(dstPointer, srcPointer, realPitch);
             dstPointer += realPitch;
             srcPointer += sdlSurface->pitch;
