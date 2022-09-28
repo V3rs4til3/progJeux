@@ -1,0 +1,36 @@
+﻿@startuml
+'https://plantuml.com/class-diagram
+
+class Interventions{
+-Observers : List<Observers*>
++void susbcribe()
++void unsubscribe()
++void notify
+}
+
+abstract class Intervenants{
++ abstract void notification()
+}
+
+class Policier{
+}
+class Pompier{
+}
+class Ambulanciers{
+}
+class dispatcher{
+-Disponible : map<String, Interventions>
++void feux()
++void accident()
++void hospitalisation()
++void catastrophe()
+}
+
+Intervenants <|-- Policier
+Intervenants <|-- Pompier
+Intervenants <|-- Ambulanciers
+
+Intervenants --o Interventions
+Interventions --* dispatcher
+
+@enduml
