@@ -3,6 +3,7 @@
 #include <SDL2/SDL_opengl.h>
 #include "Matrix44d.hpp"
 #include "TTFont.hpp"
+#include "Texture.hpp"
 
 using namespace std;
 
@@ -21,6 +22,17 @@ public:
     void refresh(){ 
         SDL_GL_SwapWindow(sdlWindow);
     }
+
+    void drawTexture(Texture* laTexture, int x, int y, int w, int h){
+        glBindTexture(GL_TEXTURE_2D, laTexture->getTextureID());
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0); glVertex2f(x, y);
+            glTexCoord2f(1, 0); glVertex2f(x + w, y);
+            glTexCoord2f(1, 1); glVertex2f(x + w, y + h);
+            glTexCoord2f(0, 1); glVertex2f(x, y + h);
+        glEnd();
+    }
+
     void draw(){
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
@@ -47,23 +59,15 @@ public:
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
-        glGenTextures(1, &textureId);
-        glBindTexture(GL_TEXTURE_2D, textureId);
-        
-        
         TTF_Init();
         //SDL_Surface* sdlSurface =  IMG_Load("wow.png");
-        TTFont fpsFont = TTFont("arial.ttf", 20);
+        Texture* texture = new Texture("wow.png");
         //font = TTF_OpenFont("SideLove.ttf", 42);
-        fpsFont.renderText("Hello World", {0, 255, 0, 255});
-        fpsFont.imageTo2D();
-        fpsFont.freeSurface();
+        
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     };
     ~GLContext(){
-        TTF_CloseFont(font);
+        //delete fpsFont;
         SDL_GL_DeleteContext(glContext);
         glDeleteTextures(1,&textureId);
     };

@@ -8,6 +8,8 @@
 #include "SDLEvent.h"
 #include "Window.h"
 #include "GLContext.h"
+#include "Texture.hpp"
+#include "Chrono.hpp"
 
 using namespace std;
 
@@ -26,6 +28,10 @@ public:
     }
 
     void start(){
+        Texture* laTexture = new Texture("bricks.png");
+        TTFont* laFont = new TTFont("CreepyPumkin.ttf", 20);
+        Texture* textureFont = new Texture(laFont->renderText("Hello World!", {250, 0, 0, 250}));
+
         bool isUp = true;
         while (isUp){
             //gestion des evenments
@@ -39,8 +45,13 @@ public:
             //gestion de l'affichage
             glcontext.clear();
             glcontext.draw();
+            //glcontext.drawTexture(laTexture, 0, 0, 400, 200);
+            glcontext.drawTexture(textureFont, 0, 0,textureFont->getHeigth() , textureFont->getWitdh());
             glcontext.refresh();
         }
+        delete laTexture;
+        delete laFont;
+        delete textureFont;
     }
     Application(){
         SDL_Init(SDL_INIT_EVERYTHING);
@@ -51,6 +62,7 @@ public:
         SDL_Quit();
         IMG_Quit();
         TTF_Quit();
+        
     };
 };
 
