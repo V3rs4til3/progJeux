@@ -29,7 +29,7 @@ public:
 
     void start(){
         int frames = 0;
-        Texture* laTexture = new Texture("bricks.png");
+        //Texture* laTexture = new Texture("cb.jpg");
         TTFont* laFont = new TTFont("CreepyPumkin.ttf", 20);
         Texture* textureFont = new Texture(laFont->renderText("FPS = 0", {250, 0, 0, 250}));
         bool isUp = true;
@@ -56,7 +56,7 @@ public:
                 chrono.reset();
             }
         }
-        delete laTexture;
+        //delete laTexture;
         delete laFont;
         delete textureFont;
     }

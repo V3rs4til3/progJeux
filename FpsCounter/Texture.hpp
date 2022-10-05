@@ -8,7 +8,7 @@
 class Texture{
     private:
         SDL_Surface* surface;
-        int width, height;
+        int width, height, pixel;
         unsigned int textureId;
     public:
         /// @brief constructeur d'une texture a partir d'une image
@@ -22,14 +22,6 @@ class Texture{
             width = surface->w;
             glGenTextures(1, &textureId);
             glBindTexture(GL_TEXTURE_2D, textureId);
-
-            #ifdef _APPLE_
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h,
-                        0, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
-            #else
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h,
-                                        0, GL_BGRA /*GL_RGBA*/, GL_UNSIGNED_BYTE, surface->pixels);
-            #endif
             
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -69,5 +61,9 @@ class Texture{
         /// @return la hauteur de la texture
         int getWitdh(){
             return width;
+        }
+
+        int getPixel(){
+            return pixel;
         }
 };
