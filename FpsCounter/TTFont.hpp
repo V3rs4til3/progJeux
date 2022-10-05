@@ -8,10 +8,6 @@ class TTFont{
     private:
         TTF_Font* font;
         SDL_Surface* surface;
-        int size;
-        const char* text;
-        const char* fontPath;
-        SDL_Color color;
 
         /// @brief fonction permettant de corriger le bug de font de SDL
         void fixText(){
@@ -31,7 +27,6 @@ class TTFont{
         /// @param path emplacement du fichier de font
         /// @param size grosseur de la font
         TTFont(const char* path, int size){
-            TTF_Init();
             font = TTF_OpenFont(path, size);
         }
         ~TTFont(){
@@ -43,8 +38,6 @@ class TTFont{
         /// @param color couleur du texte
         /// @return la surface contenant la font
         SDL_Surface* renderText(const char* text, SDL_Color color){
-            this->text = text;
-            this->color = color;
             surface = TTF_RenderText_Blended(font, text, color);
             if(surface == NULL){
                 exit(1);

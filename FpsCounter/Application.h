@@ -28,11 +28,12 @@ public:
     }
 
     void start(){
+        int frames = 0;
         Texture* laTexture = new Texture("bricks.png");
         TTFont* laFont = new TTFont("CreepyPumkin.ttf", 20);
-        Texture* textureFont = new Texture(laFont->renderText("Hello World!", {250, 0, 0, 250}));
-
+        Texture* textureFont = new Texture(laFont->renderText("FPS = 0", {250, 0, 0, 250}));
         bool isUp = true;
+        Chrono chrono;
         while (isUp){
             //gestion des evenments
             while (SDLEvent::poll()){
@@ -48,6 +49,12 @@ public:
             //glcontext.drawTexture(laTexture, 0, 0, 400, 200);
             glcontext.drawTexture(textureFont, 0, 0,textureFont->getHeigth() , textureFont->getWitdh());
             glcontext.refresh();
+            frames++;
+            if (chrono.duration() > 1000){
+                textureFont = new Texture(laFont->renderText(("FPS = " + to_string(frames)).c_str(), {250, 0, 0, 250}));
+                frames = 0;
+                chrono.reset();
+            }
         }
         delete laTexture;
         delete laFont;
